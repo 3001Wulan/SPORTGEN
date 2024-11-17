@@ -10,6 +10,15 @@ import random
 
 # Konfigurasi halaman (harus di bagian paling atas)
 st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
+st.markdown(""" 
+    <style>
+        .block-container { background-color: #9CAF88; }  /* Warna sage */
+        .stButton>button { background-color: #4CAF50; color: white; }
+        .stSlider>div { background-color: #dff0d8; padding: 5px; border-radius: 10px; }
+        .stFileUploader>div { background-color: #dff0f7; padding: 10px; border-radius: 10px; }
+    </style>
+""", unsafe_allow_html=True)
+
 
 # Inisialisasi session state
 if 'page' not in st.session_state:
