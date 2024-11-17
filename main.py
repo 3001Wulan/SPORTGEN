@@ -11,11 +11,8 @@ import random
 # Konfigurasi halaman (harus di bagian paling atas)
 st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
 
-# Daftar gambar banner yang tersedia
-banner_images = ["banner.jpeg", "banner1.jpeg", "banner2.jpeg"]  # Ganti dengan nama gambar Anda
-
-# Pilih gambar secara acak setiap kali halaman dimuat
-selected_image = random.choice(banner_images)
+selected_image = os.path.join(os.getcwd(), "banner.jpeg")
+st.image(selected_image, use_container_width=True)
 
 # Mengecek apakah file gambar ada
 if os.path.exists(selected_image):
