@@ -15,6 +15,12 @@ banner_images = ["banner.jpeg", "banner1.jpeg", "banner2.jpeg"]  # Ganti dengan 
 # Pilih gambar secara acak setiap kali halaman dimuat
 selected_image = random.choice(banner_images)
 
+
+if os.path.exists(selected_image):
+    st.write(f"File gambar {selected_image} ditemukan!")
+    st.image(selected_image, use_container_width=True)
+else:
+    st.error(f"File gambar {selected_image} tidak ditemukan! Pastikan gambar ada di direktori yang sama dengan aplikasi.")
 # Konfigurasi halaman
 st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
 st.markdown(""" 
