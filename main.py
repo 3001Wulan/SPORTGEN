@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,7 +7,7 @@ from sklearn.cluster import KMeans
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 import random
-import os
+
 
 # Daftar gambar banner yang tersedia
 banner_images = ["banner.jpeg", "banner1.jpeg", "banner2.jpeg"]  # Ganti dengan nama gambar Anda
