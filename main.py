@@ -8,16 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 import random
 
-# Konfigurasi halaman
-st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
-st.markdown(""" 
-    <style>
-        .block-container { background-color: #9CAF88; }  /* Warna sage */
-        .stButton>button { background-color: #4CAF50; color: white; }
-        .stSlider>div { background-color: #dff0d8; padding: 5px; border-radius: 10px; }
-        .stFileUploader>div { background-color: #dff0f7; padding: 10px; border-radius: 10px; }
-    </style>
-""", unsafe_allow_html=True)
+
 
 # Daftar gambar banner yang tersedia
 banner_images = ["banner.jpeg", "banner1.jpeg", "banner2.jpeg"]  # Ganti dengan nama gambar Anda
@@ -31,7 +22,16 @@ if os.path.exists(selected_image):
 else:
     st.error(f"File gambar {selected_image} tidak ditemukan! Pastikan gambar ada di direktori yang sama dengan aplikasi.")
 
-
+# Konfigurasi halaman
+st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
+st.markdown(""" 
+    <style>
+        .block-container { background-color: #9CAF88; }  /* Warna sage */
+        .stButton>button { background-color: #4CAF50; color: white; }
+        .stSlider>div { background-color: #dff0d8; padding: 5px; border-radius: 10px; }
+        .stFileUploader>div { background-color: #dff0f7; padding: 10px; border-radius: 10px; }
+    </style>
+""", unsafe_allow_html=True)
 
 # Inisialisasi session state
 if 'page' not in st.session_state:
