@@ -6,12 +6,19 @@ from sklearn.cluster import KMeans
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 import random
+import os
 
 # Daftar gambar banner yang tersedia
 banner_images = ["banner.jpeg", "banner1.jpeg", "banner2.jpeg"]  # Ganti dengan nama gambar Anda
 
 # Pilih gambar secara acak setiap kali halaman dimuat
 selected_image = random.choice(banner_images)
+
+# Periksa apakah gambar yang dipilih ada di direktori yang sama
+if os.path.exists(selected_image):
+    st.write(f"File gambar {selected_image} ditemukan!")
+else:
+    st.error(f"File gambar {selected_image} tidak ditemukan! Pastikan gambar ada di direktori yang sama dengan aplikasi.")
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
