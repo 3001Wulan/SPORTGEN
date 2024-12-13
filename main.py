@@ -1,4 +1,3 @@
-import os
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,9 +5,16 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
+from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score
 import random
 
-# Konfigurasi halaman (harus di bagian paling atas)
+# Daftar gambar banner yang tersedia
+banner_images = ["banner.jpeg", "banner1.jpeg", "banner2.jpeg"]  # Ganti dengan nama gambar Anda
+
+# Pilih gambar secara acak setiap kali halaman dimuat
+selected_image = random.choice(banner_images)
+
+# Konfigurasi halaman
 st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
 st.markdown(""" 
     <style>
@@ -19,13 +25,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 # Inisialisasi session state
 if 'page' not in st.session_state:
     st.session_state['page'] = 'Beranda'
 
 # Judul Aplikasi dan Gambar Banner
-
+st.image(selected_image, use_container_width=True)
 st.title("📊 SPORTGEN")
 
 # Sidebar dengan tombol untuk navigasi
@@ -80,20 +85,32 @@ elif st.session_state['page'] == 'Analisis Data':
                 except Exception as e:
                     st.error(f"Terjadi kesalahan saat melakukan standarisasi: {e}")
 
-            # Klasterisasi
+             # Header
             st.header("3️⃣ Klasterisasi KMeans")
+
+            # Pilihan jumlah klaster
             num_clusters = st.slider("Pilih jumlah kluster:", min_value=2, max_value=10, value=3)
 
+            # Tombol untuk melakukan klasterisasi
             if st.button("Lakukan Klasterisasi"):
                 if 'data_scaled' in st.session_state and not st.session_state['data_scaled'].empty:
+                     # Inisialisasi model KMeans
                     kmeans = KMeans(n_clusters=num_clusters, random_state=42)
-                    st.session_state['data_scaled']['cluster'] = kmeans.fit_predict(st.session_state['data_scaled'])
+                    clusters = kmeans.fit_predict(st.session_state['data_scaled'])
+        
+        # Menambahkan hasil klaster ke data
+                    st.session_state['data_scaled']['cluster'] = clusters
                     st.session_state['kmeans'] = kmeans
+
+                    ch_score = calinski_harabasz_score(st.session_state['data_scaled'].drop(columns=['cluster']), clusters)
+        
+        # Evaluasi model dengan Silhouette Score
                     st.write("### Data dengan klaster:")
                     st.write(st.session_state['data_scaled'])
+                    st.write(f"### Calinski-Harabasz Score: {ch_score:.2f}")
                 else:
                     st.warning("Data harus distandarisasi terlebih dahulu.")
-
+   
             # Visualisasi
             st.header("4️⃣ Visualisasi Klasterisasi")
             st.subheader("Pilih kombinasi fitur atau gunakan semua fitur dengan PCA:")
