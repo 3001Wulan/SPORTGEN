@@ -8,12 +8,6 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score
 import random
 
-# Daftar gambar banner yang tersedia
-banner_images = ["banner.jpeg", "banner1.jpeg", "banner2.jpeg"]  # Ganti dengan nama gambar Anda
-
-# Pilih gambar secara acak setiap kali halaman dimuat
-selected_image = random.choice(banner_images)
-
 # Konfigurasi halaman
 st.set_page_config(page_title="Aplikasi Akuisisi Data dan Analisis", page_icon="📊", layout="wide")
 st.markdown(""" 
