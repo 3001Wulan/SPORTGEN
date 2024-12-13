@@ -24,7 +24,6 @@ if 'page' not in st.session_state:
     st.session_state['page'] = 'Beranda'
 
 # Judul Aplikasi dan Gambar Banner
-st.image(selected_image, use_container_width=True)
 st.title("📊 SPORTGEN")
 
 # Sidebar dengan tombol untuk navigasi
